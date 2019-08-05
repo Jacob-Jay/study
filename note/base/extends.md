@@ -112,3 +112,26 @@ Outer.inner i = new Outer.Inner();
 - 对于已检查异常最好抛出至合适地方处理
 - 再次抛出建议包装原异常a.initCase(e)
 - final中的renturn会覆盖try的return
+
+# 泛型
+
+泛型提高了类型检测的安全性和可读性，构造方法可以省略泛型参数，由左边部分推测出来。
+
+泛型其实是两条指令
+
+- 调用方法返回object或者限定类型
+- 编译器自动转型为给定T类型
+
+```java
+List<Integer> list = new arrayList<>();
+```
+
+- 直接使用<T>
+
+## 泛型语法
+
+- 类中使用
+- 方法中使用
+- 限定泛型范围< T extends xxx>  即使是接口也使用extends   还可以多个组合（a&b  或者a|b？？？）
+- 编译器将T擦除使用object或者限定范围的第一个类代替
+- 桥方法为了兼容1.5以前
