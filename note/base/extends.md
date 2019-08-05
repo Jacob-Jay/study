@@ -134,4 +134,31 @@ List<Integer> list = new arrayList<>();
 - 方法中使用
 - 限定泛型范围< T extends xxx>  即使是接口也使用extends   还可以多个组合（a&b  或者a|b？？？）
 - 编译器将T擦除使用object或者限定范围的第一个类代替
-- 桥方法为了兼容1.5以前
+- 桥方法为了兼容1.5以前以及多态
+
+## 约束
+
+- 不能使用基本类型
+
+- 获取类型信息时会忽略泛型
+
+- 不允许实例化泛型数组,使用泛型集合代替
+
+  ```java
+   Demoa<Integer>[]demoas = new Demoa<Integer>[10]; //new  会报错
+  ```
+
+- 不能实例化 
+
+  ```java
+  T t  = new T();//非法的
+  ```
+
+- 静态不能使用泛型
+
+- 异常不不能示泛型的
+
+- ？ super  a  支持写入
+
+- ？ extends a 支持读取
+
