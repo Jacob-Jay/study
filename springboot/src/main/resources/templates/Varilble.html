@@ -1,0 +1,103 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+</head>
+<body>
+<div style="width: 50%;height: 200px;overflow: auto;float: left">
+    <h1> user $</h1>
+    <p  th:text="${#ctx.name}">welcome to this page  </p>
+    <!--<p  th:text="${request}">welcome to this page  </p>-->
+    <p  th:text="${#request.getAttribute('name')}">welcome to this page  </p>
+    <p  th:text="${session.name}">welcome to this page  </p>
+
+</div>
+
+
+
+<div style="width: 50%;height: 200px;overflow: auto;float: left">
+    <h1>user * </h1>
+    <p th:text="${order.id}">orderId</p>
+    <p th:object="${order}"  th:text="*{id}">
+    <p th:object="${order}"  th:text="${#object.id}">
+        <!-- <span th:text="*{id}"></span>-->
+        orderId</p>
+
+</div>
+
+
+
+
+<div style="width: 50%;height: 200px;overflow: auto;float: left">
+    <h1>user url</h1>
+    <a th:href="@{/order(id=${order.id},name='jq')}">/ab/order?id=10&name=jq</a><br>
+    <a th:href="@{/order/{id}(id=${order.id},name='jq')}">/ab/10/order?name=jq</a><br>
+    <a th:href="@{~/order(id=${order.id},name='jq')}">/order?id=10&name=jq</a><br>
+    <a th:href="@{//order(id=${order.id},name='jq')}">http://order?id=10&name=jq</a><br>
+</div>
+
+
+
+<div style="width: 50%;height: 200px;overflow: auto;float: left">
+    <h1>text literals</h1>
+    <p th:text="'文本常量使用单引号抱起来'">sds</p>
+    <p th:text="11">10</p>
+    <p th:text="11+40">15</p>
+    <p th:if="${bool}==true"> it is true</p>
+    <p th:if="${bool==true}==true"> it is true</p>
+    <p th:if="${none==null}==true"> it is none</p>
+    <p th:if="${none}==null"> it is none</p>
+    <p th:text="aaaaaaa"></p>
+</div>
+
+
+
+
+<div style="width: 50%;height: 200px;overflow: auto;float: left">
+    <h1>string appended</h1>
+    <p th:text="'welcome'+${bool}">  append</p>
+</div>
+<div style="width: 50%;height: 200px;overflow: auto;float: left">
+    <h1>string replace</h1>
+    <p th:text="|welcome|">  replace</p>
+</div>
+<div style="width: 50%;height: 200px;overflow: auto;float: left">
+    <h1>Arithmetic  give value</h1>
+        <div th:with="pro=(3%3==0)">赋值给pro
+    <p  th:if="${pro}==true">赋值正确显示</p>
+        </div>
+</div>
+<div style="width: 50%;height: 200px;overflow: auto;float: left">
+        <h1>compare and not</h1>
+    <p th:if=" 9  ge 3">
+            <span th:text="'1 和 3 相比'+( !(1 lt 3) ? '<':'>')"></span>
+    </p>
+</div>
+<div style="width: 50%;height: 200px;overflow: auto;float: left">
+        <h1>conditions</h1>
+    <div th:text="(3 lt 1) ? ((9 gt 3)?'1':'2')">
+        select class
+    </div>
+</div>
+
+<div style="width: 50%;height: 200px;overflow: auto;float: left">
+    <h1>default value</h1>
+    <span th:text="${stw}?:'not this name'">
+
+    </span>
+    <span th:text="${stw}?:_">
+            not this name
+    </span>
+</div>
+
+<div style="width: 50%;height: 200px;overflow: auto;float: left">
+    <h1>double{{}}</h1>
+   <span th:text="${order.customer.name}"></span>
+</div>
+<div style="width: 50%;height: 200px;overflow: auto;float: left">
+    <h1>conditions</h1>
+
+</div>
+</body>
+</html>
