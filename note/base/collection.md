@@ -34,3 +34,9 @@
 ## 专用
 
 - weakHashMap
+
+## 框架
+
+- RandomAccess
+- 视图
+- 不可修改视图
