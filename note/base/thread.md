@@ -1,15 +1,13 @@
 ## 创建
 
-### runnable
+- runnable
+  - 实现runnable，重写run方法
+  - 使用runnable构建一个thread
+  - thread.start()
 
-- 实现runnable，重写run方法
-- 使用runnable构建一个thread
-- thread.start()
-
-### thread
-
-- 继承thread重写run方法
-- thread.start()
+- thread
+  - 继承thread重写run方法
+  - thread.start()
 
 ## 中断
 
@@ -58,3 +56,68 @@
 
 同步是为了解决多个线程对同一资源的修改
 
+- 静态条件
+
+- 锁对象 ReentrantLock  
+
+  - 不能使用带资源的try（）{}  由于 try和finally的执行顺序以及异常？？？
+  - 公平锁 ReentrantLock（true）q倾向于等待时间长的
+  - 可重入
+  - lock方法不会中止或打断所以使用tryLock防止等待期间被打断造成死锁
+  - 在一定时间尝试锁定
+
+- 条件对象condition
+
+  - 调用await会释放lock？？？？？
+  - sign随机叫醒同一条件等待的线程
+  - signall叫醒同一条件所有等待的线程
+  - 必须由lock创建不能自己new
+  - 等待一定时间
+  - 中断会结结束等待并抛出异常
+
+- synchronized
+
+  - 使用对象内部的锁锁定某个资源
+  - 只能使用锁订对象的wait与notify
+
+- volatile
+
+- final
+
+  - 保证多线程之间看见的构造完成的对象而不是null
+
+- 原子性
+
+- 死锁，
+
+  - 比如两个线程互相等待对方的资源，圆桌效应
+
+- 线程局部变量
+
+- 读写锁
+
+  - ```java
+    static java.util.concurrent.locks.ReadWriteLock lock = new ReentrantReadWriteLock();
+    static Lock readLock = lock.readLock();
+    static Lock writeLock = lock.writeLock();
+    ```
+
+  -  writeLock.lock(); //排斥读写锁
+
+  - readLock.lock();  //共享读锁，排斥写锁，所以读出来都是10的整数
+
+## 阻塞队列
+
+## 线程安全的集合
+
+## callable与future
+
+## 执行器
+
+- 线程池
+  - 为了减少开销
+  - 控制线程数量
+  - ![1565168124965](/1565168124965.png)
+
+- fork-join
+  - 根据任务的耗时情况决定分割任务的度
