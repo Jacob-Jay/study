@@ -1,0 +1,13 @@
+Channel
+    代表与各种硬件、网络流之间的连接用于读写，
+
+InterruptibleChannel
+    实现了此接口的channel可以异步的中断
+    如果线程被标记为中断后，在进行io操作或者io操作时线程被中断会抛出ClosedByInterruptException异常
+    如果io操作中被异步关闭会抛出AsynchronousCloseException异常
+
+SelectableChannel
+    可以与Selector结合实现多路复用
+    注册前必须设置未非诸塞模式，不然就和bio没区别，
+    selector 关闭时就会取消所有的注册，channel也可以自行取消
+    支持的操作： validOps()
