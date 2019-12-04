@@ -1,0 +1,28 @@
+
+channel  为什么每次写完了要关？？？？？
+
+
+回调：
+
+
+future
+
+                sync.addListener(new ChannelFutureListener() {
+                                @Override
+                                public void operationComplete(ChannelFuture future) throws Exception {
+                                    if (future.isSuccess()) {
+                                        future.channel().writeAndFlush(Unpooled.copiedBuffer("你好服务器".getBytes()));
+                                    }
+                                }
+                 });
+
+
+事件和channelHandler
+       入站事件
+            连接激活或者连接失活
+            数据读取，或者读取完毕
+            用户事件
+            错误事件
+       出战事件
+            打开或关闭到远程的连接
+            将数据写或刷到套接字
