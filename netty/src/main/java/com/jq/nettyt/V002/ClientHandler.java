@@ -12,26 +12,21 @@ import io.netty.channel.ChannelInboundHandlerAdapter;
  */
 public class ClientHandler extends ChannelInboundHandlerAdapter{
 
+    @Override
+    public void channelActive(ChannelHandlerContext ctx) throws Exception {
+        ctx.channel().writeAndFlush(Unpooled.copiedBuffer("你好服务器".getBytes()));
+    }
 
     @Override
     public void channelRead(ChannelHandlerContext ctx, Object msg) throws Exception {
-//        super.channelRead(ctx, msg);
-        try {
-            ByteBuf buf = (ByteBuf) msg;
-            int i = buf.readableBytes();
-            byte[] content = new byte[i];
-            buf.readBytes(content);
-            System.out.println(new String(content));
-        } catch (Exception e) {
-            e.printStackTrace();
-        } finally {
-            ((ByteBuf) msg).release();
-        }
 
+        ByteBuf content = (ByteBuf) msg;
+        int i = content.readableBytes();
+        byte[] ct = new byte[i];
+        content.readBytes(ct);
+        String ms = new String(ct);
+        System.out.println(ms);
+
+        content.release();
     }
-
-/*    @Override
-    public void channelActive(ChannelHandlerContext ctx) throws Exception {
-        ctx.writeAndFlush(Unpooled.copiedBuffer("你好服务器".getBytes()));
-    }*/
 }

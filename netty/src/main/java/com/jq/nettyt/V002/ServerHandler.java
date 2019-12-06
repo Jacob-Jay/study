@@ -2,7 +2,6 @@ package com.jq.nettyt.V002;
 
 import io.netty.buffer.ByteBuf;
 import io.netty.buffer.Unpooled;
-import io.netty.channel.ChannelFutureListener;
 import io.netty.channel.ChannelHandlerContext;
 import io.netty.channel.ChannelInboundHandlerAdapter;
 
@@ -13,34 +12,17 @@ import io.netty.channel.ChannelInboundHandlerAdapter;
  */
 public class ServerHandler extends ChannelInboundHandlerAdapter{
 
-
     @Override
     public void channelRead(ChannelHandlerContext ctx, Object msg) throws Exception {
-        try {
-            ByteBuf buf = (ByteBuf) msg;
-            int i = buf.readableBytes();
-            byte[] content = new byte[i];
-            buf.readBytes(content);
-            System.out.println(new String(content));
+//        super.channelRead(ctx, msg);
+        ByteBuf content = (ByteBuf) msg;
+        int i = content.readableBytes();
+        byte[] ct = new byte[i];
+        content.readBytes(ct);
+        String ms = new String(ct);
+        System.out.println(ms);
+        ctx.channel().writeAndFlush(Unpooled.copiedBuffer("你好客户端".getBytes()));
 
-            ctx.channel().writeAndFlush(Unpooled.copiedBuffer("hi".getBytes()));
-        } catch (Exception e) {
-            e.printStackTrace();
-        } finally {
-            ((ByteBuf) msg).release();
-        }
-    }
-
-    @Override
-    public void channelActive(ChannelHandlerContext ctx) throws Exception {
-        super.channelActive(ctx);
-
-
-    }
-
-    @Override
-    public void channelReadComplete(ChannelHandlerContext ctx) throws Exception {
-        System.out.println("finish");
-        ctx.writeAndFlush(null).addListener(ChannelFutureListener.CLOSE);
+        content.release();
     }
 }
