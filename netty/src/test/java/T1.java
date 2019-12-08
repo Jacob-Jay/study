@@ -13,8 +13,9 @@ public class T1 {
     public static void main(String[] args) {
 //        System.out.println((1<<2|1<<3|1<<4)&1<<2);
 
-      t2();
+//      t2();
 //        t3();
+        System.out.println(TimeUnit.SECONDS.toNanos(1) );
     }
 
     private static void t3() {

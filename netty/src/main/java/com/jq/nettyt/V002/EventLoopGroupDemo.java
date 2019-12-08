@@ -8,5 +8,5 @@ package com.jq.nettyt.V002;
  *
  * 一旦调用了关闭方法，isShuttingDown就返回true
  */
-public class EventLoopDemo {
+public class EventLoopGroupDemo {
 }
