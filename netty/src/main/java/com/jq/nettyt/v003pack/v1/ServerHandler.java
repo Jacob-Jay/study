@@ -32,6 +32,8 @@ public class ServerHandler extends ChannelInboundHandlerAdapter {
     @Override
     public void channelReadComplete(ChannelHandlerContext ctx) throws Exception {
 //        super.channelReadComplete(ctx);
-        ctx.writeAndFlush(Unpooled.copiedBuffer(("你好客户端"+System.getProperty("line.separator")).getBytes()));
+//        ctx.writeAndFlush ("你好客户端");
+        ctx.channel().writeAndFlush ("你好客户端");
+//        ctx.writeAndFlush(Unpooled.copiedBuffer(("你好客户端"+System.getProperty("line.separator")).getBytes()));
     }
 }
