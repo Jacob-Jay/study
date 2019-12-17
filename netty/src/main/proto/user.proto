@@ -1,0 +1,10 @@
+syntax ="proto2";
+
+package com.jq.seriliza.probuf;             //默认包名
+option java_outer_classname = "UserProto";           //指定类名
+option java_package = "com.jq.seriliza.probuf";  //指定包名
+
+message User {
+    optional string name = 1;
+    optional int32 age = 2;
+}

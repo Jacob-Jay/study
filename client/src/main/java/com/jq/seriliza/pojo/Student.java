@@ -1,19 +1,18 @@
-package com.jq.pojo;
+package com.jq.seriliza.pojo;
 
 import java.io.Serializable;
 
 /**
  * @author Jiangqing
  * @version 1.0
- * @since 2019-12-16 15:59
+ * @since 2019-12-16 16:16
  */
-public class User implements Serializable {
-
-
-    private static final long serialVersionUID = 8706466045789117240L;
+public class Student implements Serializable {
+    private static final long serialVersionUID = 8188713234657577806L;
 
     private String name;
     private int age;
+    private String code;
 
     public String getName() {
         return name;
@@ -31,11 +30,20 @@ public class User implements Serializable {
         this.age = age;
     }
 
+    public String getCode() {
+        return code;
+    }
+
+    public void setCode(String code) {
+        this.code = code;
+    }
+
     @Override
     public String toString() {
-        return "User{" +
+        return "Student{" +
                 "name='" + name + '\'' +
                 ", age=" + age +
+                ", code='" + code + '\'' +
                 '}';
     }
 }

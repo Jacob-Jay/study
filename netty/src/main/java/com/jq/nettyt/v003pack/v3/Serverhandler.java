@@ -1,7 +1,7 @@
 package com.jq.nettyt.v003pack.v3;
 
-import com.jq.pojo.Student;
-import com.jq.pojo.User;
+import com.jq.seriliza.pojo.Student;
+import com.jq.seriliza.pojo.User;
 import io.netty.channel.ChannelHandlerContext;
 import io.netty.channel.ChannelInboundHandlerAdapter;
 
