@@ -52,7 +52,7 @@ public class DeEnUtil  {
         return builder.build();
     }
 
-    public static void main(String[] args) throws InvalidProtocolBufferException {
+    /*public static void main(String[] args) throws InvalidProtocolBufferException {
         StudentProto.Student stu = createStu(null);
         System.out.println(stu);
         System.out.println("======================");
@@ -60,6 +60,6 @@ public class DeEnUtil  {
         System.out.println(seconde);
         System.out.println("==============");
         System.out.println(stu.equals(seconde));
-    }
+    }*/
 
 }

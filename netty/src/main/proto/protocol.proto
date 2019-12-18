@@ -1,0 +1,28 @@
+syntax ='proto2';
+
+package com.jq.seriliza.probuf;
+option java_package='com.jq.seriliza.probuf';
+option java_outer_classname='ProtocalWrap';
+
+message Message{        //MyMessage
+
+    required packageType type = 1;  //data_type
+
+    oneof pack{     //dataBody
+        Req  req =2;
+        Res res = 3;
+    }
+}
+
+enum packageType{
+    RES = 1;
+    REQ = 2;
+}
+
+message Req{
+    optional string content = 1;
+}
+
+message Res{
+    optional string content = 1;
+}

@@ -2,6 +2,7 @@ import io.netty.buffer.ByteBuf;
 import io.netty.buffer.ByteBufAllocator;
 
 import java.nio.ByteBuffer;
+import java.util.Random;
 
 /**
  * @author Jiangqing
@@ -10,9 +11,11 @@ import java.nio.ByteBuffer;
  */
 public class T1 {
     public static void main(String[] args) throws Exception{
-        ByteBufAllocator aDefault = ByteBufAllocator.DEFAULT;
-        ByteBuf buffer = aDefault.buffer();
-//        buffer.ma
+        Random random = new Random();
+        for(int i = 0;i<10;i++) {
+            int i1 = random.nextInt(2);
+            System.out.println(i1);
+        }
     }
 
 public void m1() {
