@@ -1,3 +1,6 @@
+import io.netty.buffer.ByteBuf;
+import io.netty.buffer.ByteBufAllocator;
+
 import java.nio.ByteBuffer;
 
 /**
@@ -7,9 +10,9 @@ import java.nio.ByteBuffer;
  */
 public class T1 {
     public static void main(String[] args) throws Exception{
-    for(int i = 0;i<10;++i){
-        System.out.println(i);
-    }
+        ByteBufAllocator aDefault = ByteBufAllocator.DEFAULT;
+        ByteBuf buffer = aDefault.buffer();
+//        buffer.ma
     }
 
 public void m1() {
