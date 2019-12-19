@@ -1,0 +1,89 @@
+/**
+
+等号后面的标记字段：在序列化反序列化时 根据给定的编号赋值  如果新加了字段一方没有时会自动忽略可以兼容旧版本
+
+
+修饰字段：
+    required:有且只能有一个，如非必要尽量不适用，
+    optional：有一个或者没有    [default ="sdada"]给定默认值，没设置默认值并且没赋值时默认值和java默认值类似，
+    false，0,""...但是enum是第一个值
+    repeated:可以重复，并且顺序会被保留，由于编码效率问题，需显示申明packed=true 如：repeated int32 samples = 4 [packed=true];
+
+
+保留字段：自定义保留编号或者变量名以便以后使用，防止冲突，
+    message Foo {
+      reserved 2, 15, 9 to 11;
+      reserved "foo", "bar";
+    }
+
+
+数据类型：   proto               java
+
+            double		 	    double
+            float		 	    float
+
+            int32	            int                 //可变长度编码负数效率低下使用sint
+            int64	            long
+
+            uint32              int
+            uint64              long
+
+            sint32              int
+            sint64              long
+
+            fixed32             int
+            fixed64             long
+
+            sfixed32	        int
+            sfixed64 	        long
+
+            bool		 	    boolean
+            string	            String
+            bytes 	            ByteString
+
+
+
+ 枚举
+    只能使用32位范围内的数，因为使用的变长int编码
+
+
+
+
+  Extensions：
+
+
+
+
+
+
+*/
+syntax = "proto2";
+package com.jq.seriliza.probuf;                 //指定包名防止内名冲突，默认为java类的包名除非显示声明java_package
+option java_package='com.jq.seriliza.probuf';
+option java_outer_classname='ProtocalWrap';
+import "user.proto";
+message Test{
+    optional string name = 1  [default ="sdada"];    //  1
+//     string name = 1;    //  v3  默认就是singular即v2的optional并且不能有显式默认值
+//    repeated string names = 9 ;  //v3 默认[packed=true]
+    reserved 2;
+    optional string age = 3;
+    optional com.jq.seriliza.probuf.User usr2 = 4;          //引入：使用其他文件的消息类型，注意需要import 并且申明时需要带上包名
+    oneof data{              //oneof:多种类型公用一个字段，后面的会覆盖之前的,不能用optional repeated 等修饰
+        string name2 = 5;
+        string name3 = 6;
+    }
+    map<string,Test> key = 7; //key类型为除浮点、bytes外的任何基础类型，value可以为任何类型
+
+    enum EnumAllowingAlias {
+        option allow_alias = true;
+        UNKNOWN = 0;
+        STARTED = 1;
+        RUNNING = 1;
+    }
+    enum EnumNotAllowingAlias {
+        UNKNOWN = 0;
+        STARTED = 1;
+        // RUNNING = 1;  // Uncommenting this line will cause a compile error inside Google and a warning message outside.
+    }
+}
