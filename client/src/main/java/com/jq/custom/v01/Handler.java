@@ -1,6 +1,8 @@
 package com.jq.custom.v01;
 
 import com.jq.seriliza.marsharlling.User;
+import com.jq.seriliza.pojo.Header;
+import com.jq.seriliza.pojo.NettyMessage;
 import io.netty.channel.ChannelHandlerContext;
 import io.netty.channel.ChannelInboundHandlerAdapter;
 import io.netty.util.ReferenceCountUtil;
@@ -15,7 +17,11 @@ public class Handler extends ChannelInboundHandlerAdapter {
     @Override
     public void channelActive(ChannelHandlerContext ctx) throws Exception {
         User user = new User("jq",90);
-        ctx.channel().writeAndFlush(user);
+        Header header = new Header();
+        NettyMessage nettyMessage = new NettyMessage();
+        nettyMessage.setHeader(header);
+        nettyMessage.setBody(user);
+        ctx.channel().writeAndFlush(nettyMessage);
     }
 
     @Override

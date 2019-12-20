@@ -1,6 +1,8 @@
 package com.jq.custom.v01;
 
-import com.jq.custom.MarshallingFactory;
+import com.jq.custom.enDecode.MarshallingFactory;
+import com.jq.custom.enDecode.OwnDecoder;
+import com.jq.custom.enDecode.OwnEncoder;
 import io.netty.bootstrap.Bootstrap;
 import io.netty.channel.ChannelFuture;
 import io.netty.channel.ChannelInitializer;
@@ -25,8 +27,8 @@ public class Clinet {
                         @Override
                         protected void initChannel(SocketChannel ch) throws Exception {
                             ChannelPipeline pipeline = ch.pipeline();
-                            pipeline.addLast(MarshallingFactory.buildDecoder());
-                            pipeline.addLast(MarshallingFactory.buildEncoder());
+                            pipeline.addLast(new OwnEncoder());
+                            pipeline.addLast(new OwnDecoder());
                             pipeline.addLast(new Handler());
                         }
                     }).connect("127.0.0.1", 8899).sync();

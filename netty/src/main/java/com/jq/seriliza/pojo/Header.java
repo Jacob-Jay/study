@@ -1,4 +1,4 @@
-package com.jq.nettyt.v005customprotocol.pojo;
+package com.jq.seriliza.pojo;
 
 import lombok.Data;
 

@@ -1,6 +1,9 @@
 package com.jq.nettyt.v005customprotocol.v01;
 
-import com.jq.nettyt.v005customprotocol.MarshallingFactory;
+import com.jq.nettyt.v005customprotocol.enDecode.MarshalingEncoder;
+import com.jq.nettyt.v005customprotocol.enDecode.MarshallingFactory;
+import com.jq.nettyt.v005customprotocol.enDecode.OwnDecoder;
+import com.jq.nettyt.v005customprotocol.enDecode.OwnEncoder;
 import io.netty.bootstrap.ServerBootstrap;
 import io.netty.channel.ChannelFuture;
 import io.netty.channel.ChannelInitializer;
@@ -27,8 +30,8 @@ public class Server {
                         @Override
                         protected void initChannel(SocketChannel ch) throws Exception {
                             ChannelPipeline pipeline = ch.pipeline();
-                            pipeline.addLast(MarshallingFactory.buildDecoder());
-                            pipeline.addLast(MarshallingFactory.buildEncoder());
+                            pipeline.addLast(new OwnEncoder());
+                            pipeline.addLast(new OwnDecoder());
                             pipeline.addLast(new Handler());
                         }
                     }).bind(8899).sync();

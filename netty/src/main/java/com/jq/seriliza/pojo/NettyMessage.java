@@ -1,4 +1,4 @@
-package com.jq.custom.pojo;
+package com.jq.seriliza.pojo;
 
 import lombok.Data;
 
