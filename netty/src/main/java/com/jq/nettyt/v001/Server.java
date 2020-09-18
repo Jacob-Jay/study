@@ -10,6 +10,8 @@ import io.netty.channel.socket.nio.NioServerSocketChannel;
 import io.netty.handler.codec.DelimiterBasedFrameDecoder;
 import io.netty.handler.codec.FixedLengthFrameDecoder;
 
+import java.util.concurrent.TimeUnit;
+
 /**
  * @author Jiangqing
  * @version 1.0
@@ -32,6 +34,15 @@ public class Server {
                         }
                     });
             ChannelFuture sync = server.bind(8899).sync();
+            new Thread(()->{
+
+                try {
+                    TimeUnit.MILLISECONDS.sleep(20000);
+                    sync.channel().close();
+                } catch (InterruptedException e) {
+                    e.printStackTrace();
+                }
+            }).start();
             sync.channel().closeFuture().sync();
         } catch (Exception e) {
 

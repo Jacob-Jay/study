@@ -1,0 +1,11 @@
+syntax ="proto2";
+
+package com.jq.seriliza.v2.probuf;             //默认包名
+option java_outer_classname = "SubscribeRepProto";           //指定类名
+option java_package = "com.jq.seriliza.v2.probuf";  //指定包名
+
+message SubscribeRep {
+    optional string orderNum = 1;
+    optional int32 code = 2;
+    optional string desc = 3;
+}

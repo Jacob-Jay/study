@@ -30,7 +30,7 @@ public class ServerHandler extends ChannelInboundHandlerAdapter{
         Future<?> submit = blockexe.submit(() -> {
             ByteBuf content=null;
             try {
-                TimeUnit.MILLISECONDS.sleep(10000);
+                TimeUnit.MILLISECONDS.sleep(1);
                  content= (ByteBuf) msg;
                 int i = content.readableBytes();
                 byte[] ct = new byte[i];
@@ -42,7 +42,7 @@ public class ServerHandler extends ChannelInboundHandlerAdapter{
             } catch (InterruptedException e) {
                 e.printStackTrace();
             }finally {
-                if (content == null) {
+                if (content != null) {
                     content = (ByteBuf) msg;
                 }
                 content.release();

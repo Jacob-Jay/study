@@ -1,7 +1,5 @@
 package com.jq.nettyt.v005customprotocol.v01;
 
-import com.jq.nettyt.v005customprotocol.enDecode.MarshalingEncoder;
-import com.jq.nettyt.v005customprotocol.enDecode.MarshallingFactory;
 import com.jq.nettyt.v005customprotocol.enDecode.OwnDecoder;
 import com.jq.nettyt.v005customprotocol.enDecode.OwnEncoder;
 import io.netty.bootstrap.ServerBootstrap;
